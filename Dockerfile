@@ -13,7 +13,9 @@ RUN apt-get update \
 apt-get purge && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN apt-get install gdebi-core -y \
+RUN apt-get update \
+&& apt-get upgrade -y \
+&& apt-get install gdebi-core -y \
 && wget http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1-1ubuntu2.1~18.04.20_amd64.deb \
 && gdebi -n ./libssl1.1_1.1.1-1ubuntu2.1~18.04.20_amd64.deb \
 && wget https://s3.amazonaws.com/rstudio-ide-build/server/bionic/amd64/rstudio-server-2022.12.0-354-amd64.deb \

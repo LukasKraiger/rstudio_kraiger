@@ -37,7 +37,7 @@ RUN apt-get update \
 apt-get purge && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN Rscript -e "install.packages(c('rmarkdown', 'markdown', 'tidyverse', 'sjlabelled', 'haven', 'magrittr', 'dplyr', 'psych', 'knitr', 'ggthemes'));"
+RUN Rscript -e "install.packages(c('tidyverse', 'sjlabelled', 'haven', 'magrittr', 'dplyr', 'psych', 'knitr', 'ggthemes'), repos='https://cran.wu.ac.at/');"
 
 ENTRYPOINT usr/lib/rstudio-server/bin/rserver --www-port=8888  --server-daemonize=0 && /bin/bash 
 #https://forums.docker.com/t/how-to-run-bash-command-after-startup/21631

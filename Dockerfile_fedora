@@ -5,7 +5,5 @@ RUN dnf update -y \
     && dnf -y install git wget \
     && dnf -y install R
 
-RUN wget https://rpmfind.net/linux/centos/8-stream/AppStream/aarch64/os/Packages/compat-openssl10-1.0.2o-4.el8.aarch64.rpm \
-    && dnf install -y compat-openssl10-1.0.2o-4.el8.aarch64.rpm \
-    && wget https://download2.rstudio.org/server/rhel8/x86_64/rstudio-server-rhel-2022.12.0-353-x86_64.rpm \
-    && dnf -y install rstudio-server-rhel-2022.12.0-353-x86_64.rpm
+RUN wget https://s3.amazonaws.com/rstudio-ide-build/desktop/fedora36/x86_64/rstudio-2022.07.2-576-x86_64.rpm \
+    && dnf -y install rstudio-2022.07.2-576-x86_64.rpm

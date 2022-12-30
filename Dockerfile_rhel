@@ -1,8 +1,11 @@
 FROM redhat/ubi9
 
 RUN dnf update -y \
-    && dnf -y upgrade \
-    && dnf -y install git wget \
+    && dnf -y install git wget
+
+RUN subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms \
+    && dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
+    && dnf upgrade -y \
     && dnf -y install R
 
 RUN wget https://s3.amazonaws.com/rstudio-ide-build/server/rhel9/x86_64/rstudio-server-rhel-2023.03.0-daily-34-x86_64.rpm \

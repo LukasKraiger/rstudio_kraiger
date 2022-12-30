@@ -3,8 +3,7 @@ FROM redhat/ubi9
 RUN dnf update -y \
     && dnf -y install git wget
 
-RUN subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms \
-    && dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
+RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
     && dnf upgrade -y \
     && dnf -y install R
 

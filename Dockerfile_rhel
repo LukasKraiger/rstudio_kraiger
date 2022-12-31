@@ -7,7 +7,7 @@ RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.n
     && dnf upgrade -y \
 		&& dnf -y install dnf-plugins-core \
 
-RUN dnf --disableplugin=subscription-manager -y install R
+RUN dnf install --disableplugin=subscription-manager -y R
 
 
 RUN wget https://s3.amazonaws.com/rstudio-ide-build/server/rhel9/x86_64/rstudio-server-rhel-2023.03.0-daily-34-x86_64.rpm \

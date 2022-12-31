@@ -6,7 +6,7 @@ RUN dnf update -y \
 RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
     && dnf upgrade -y \
 		&& dnf -y install dnf-plugins-core \
-		&& dnf -y install texlive-scheme-full \
+		&& dnf config-manager --set-enabled PowerToolsl \
 		&& dnf -y install R
 
 

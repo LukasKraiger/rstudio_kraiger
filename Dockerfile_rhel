@@ -6,8 +6,7 @@ RUN dnf update -y \
 RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
     && dnf upgrade -y \
 		&& dnf -y install dnf-plugins-core \
-    && curl -O https://cdn.rstudio.com/r/rhel-9/pkgs/R-${R_VERSION}-1-1.x86_64.rpm \
-		&& dnf -y install R-${R_VERSION}-1-1.x86_64.rpm
+		&& dnf -y install R
 
 
 RUN wget https://s3.amazonaws.com/rstudio-ide-build/server/rhel9/x86_64/rstudio-server-rhel-2023.03.0-daily-34-x86_64.rpm \

@@ -62,4 +62,4 @@ RUN R -e "devtools::install_github('LukasKraiger/frame')"
 #https://stackoverflow.com/questions/45289764/install-r-packages-using-docker-file
 
 ENTRYPOINT usr/lib/rstudio-server/bin/rserver --www-port=8888  --server-daemonize=0 && /bin/bash 
-#https://forums.docker.com/t/how-to-run-bash-command-after-startup/21631
+#https://forums.docker.com/t/how-to-run-bash-command-after-startup/21631 

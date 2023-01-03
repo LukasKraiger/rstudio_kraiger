@@ -58,7 +58,7 @@ RUN R -e "install.packages('dplyr', dependencies=TRUE, repos='https://cran.wu.ac
 RUN R -e "install.packages('psych', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(psych, logical.return=T)) quit(status=10)"
 RUN R -e "install.packages('knitr', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(knitr, logical.return=T)) quit(status=10)"
 RUN R -e "install.packages('ggthemes', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(ggthemes, logical.return=T)) quit(status=10)"
-#RUN R -e "devtools::install_github('tidyverse/ggplot2')"
+RUN R -e "devtools::install_github('LukasKraiger/frame')"
 #https://stackoverflow.com/questions/45289764/install-r-packages-using-docker-file
 
 ENTRYPOINT usr/lib/rstudio-server/bin/rserver --www-port=8888  --server-daemonize=0 && /bin/bash 

@@ -5,6 +5,9 @@ RUN dnf update -y \
     && dnf -y install git wget \
     && dnf -y install R
 
+RUN dnf update -y \
+    && dnf -y install harfbuzz-devel fribidi-devel openssl-devel
+
 RUN wget https://s3.amazonaws.com/rstudio-ide-build/server/rhel9/x86_64/rstudio-server-rhel-2023.03.0-daily-34-x86_64.rpm \
     && dnf -y install rstudio-server-rhel-2023.03.0-daily-34-x86_64.rpm
 

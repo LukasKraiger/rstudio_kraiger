@@ -2,15 +2,15 @@ FROM fedora
 RUN dnf update -y \
     && dnf -y upgrade \
     && dnf -y install git wget passwd \
-    && dnf -y install R
+    && dnf -y install R  
    
  
-RUN dnf -y install rstudio-server \
+RUN  dnf -y install chkconfig openssl-libs \
     #wget https://s3.amazonaws.com/rstudio-ide-build/server/rhel9/x86_64/rstudio-server-rhel-2023.03.0-daily-34-x86_64.rpm \
-    && dnf -y install chkconfig \
+    && dnf -y install rstudio-server
    # && dnf -y install rstudio-server-rhel-2023.03.0-daily-34-x86_64.rpm \
    # && ln -s /usr/share/R /usr/share/doc/ \
-    && rstudio-server verify-installation
+   # && rstudio-server verify-installation
    # && systemctl enable --now rstudio-server
  
 RUN dnf update -y \

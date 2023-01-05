@@ -1,25 +1,42 @@
 FROM fedora
-
 RUN dnf update -y \
     && dnf -y upgrade \
-    && dnf -y install git wget \
+    && dnf -y install git wget passwd \
     && dnf -y install R
-
+   
+ 
+RUN wget https://s3.amazonaws.com/rstudio-ide-build/server/rhel9/x86_64/rstudio-server-rhel-2023.03.0-daily-34-x86_64.rpm \
+    && dnf -y install chkconfig \
+    && dnf -y install rstudio-server-rhel-2023.03.0-daily-34-x86_64.rpm \
+    && ln -s /usr/share/R /usr/share/doc/ \
+    && rstudio-server verify-installation
+   # && systemctl enable --now rstudio-server
+ 
 RUN dnf update -y \
     && dnf -y install harfbuzz-devel fribidi-devel openssl-devel libuuid libuuid-devel libcurl-devel \
     && dnf -y install freetype-devel libpng-devel libtiff-devel libjpeg-turbo-devel
-    
-RUN wget https://s3.amazonaws.com/rstudio-ide-build/server/rhel9/x86_64/rstudio-server-rhel-2023.03.0-daily-34-x86_64.rpm \
-    && dnf -y install rstudio-server-rhel-2023.03.0-daily-34-x86_64.rpm
-
-RUN R -e "install.packages('devtools', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(devtools, logical.return=T)) quit(status=10)"
-RUN R -e "install.packages('tidyverse', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(tidyverse, logical.return=T)) quit(status=10)"
-RUN R -e "install.packages('sjlabelled', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(sjlabelled, logical.return=T)) quit(status=10)"
-RUN R -e "install.packages('haven', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(haven, logical.return=T)) quit(status=10)"
-RUN R -e "install.packages('magrittr', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(magrittr, logical.return=T)) quit(status=10)"
-RUN R -e "install.packages('dplyr', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(dplyr, logical.return=T)) quit(status=10)"
-RUN R -e "install.packages('psych', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(psych, logical.return=T)) quit(status=10)"
-RUN R -e "install.packages('knitr', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(knitr, logical.return=T)) quit(status=10)"
-RUN R -e "install.packages('ggthemes', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(ggthemes, logical.return=T)) quit(status=10)"
-RUN R -e "devtools::install_github('LukasKraiger/frame')"
+ 
+RUN R -e "if (!library(devtools, logical.return=T)) install.packages('devtools', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
+RUN R -e "if (!library(tidyverse, logical.return=T)) install.packages('tidyverse', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
+RUN R -e "if (!library(sjlabelled, logical.return=T)) install.packages('sjlabelled', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
+RUN R -e "if (!library(haven, logical.return=T)) install.packages('haven', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
+RUN R -e "if (!library(magrittr, logical.return=T)) install.packages('magrittr', dependencies=TRUE, repos='https://cran.wu.ac.at/') "
+RUN R -e "if (!library(dplyr, logical.return=T)) install.packages('dplyr', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
+RUN R -e "if (!library(psych, logical.return=T)) install.packages('psych', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
+RUN R -e "if (!library(knitr, logical.return=T)) install.packages('knitr', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
+RUN R -e "if (!library(ggthemes, logical.return=T)) install.packages('ggthemes', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
 #https://stackoverflow.com/questions/45289764/install-r-packages-using-docker-file
+ 
+
+RUN R -e "if (!library(devtools, logical.return=T)) quit(status=10)"
+RUN R -e "if (!library(tidyverse, logical.return=T)) quit(status=10)"
+RUN R -e "if (!library(sjlabelled, logical.return=T)) quit(status=10)"
+RUN R -e "if (!library(haven, logical.return=T)) quit(status=10)"
+RUN R -e "if (!library(magrittr, logical.return=T)) quit(status=10)"
+RUN R -e "if (!library(dplyr, logical.return=T)) quit(status=10)"
+RUN R -e "if (!library(psych, logical.return=T)) quit(status=10)"
+RUN R -e "if (!library(knitr, logical.return=T)) quit(status=10)"
+RUN R -e "if (!library(ggthemes, logical.return=T)) quit(status=10)"
+ 
+RUN R -e "devtools::install_github('LukasKraiger/frame')"
+ 

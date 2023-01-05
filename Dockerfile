@@ -48,18 +48,29 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 #https://github.com/r-lib/devtools/issues/2131
  
 
-#RUN Rscript -e "install.packages(c('tidyverse', 'sjlabelled', 'haven', 'magrittr', 'dplyr', 'psych', 'knitr', 'ggthemes'), repos='https://cran.wu.ac.at/');"
-RUN R -e "install.packages('devtools', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(devtools, logical.return=T)) quit(status=10)"
-RUN R -e "install.packages('tidyverse', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(tidyverse, logical.return=T)) quit(status=10)"
-RUN R -e "install.packages('sjlabelled', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(sjlabelled, logical.return=T)) quit(status=10)"
-RUN R -e "install.packages('haven', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(haven, logical.return=T)) quit(status=10)"
-RUN R -e "install.packages('magrittr', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(magrittr, logical.return=T)) quit(status=10)"
-RUN R -e "install.packages('dplyr', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(dplyr, logical.return=T)) quit(status=10)"
-RUN R -e "install.packages('psych', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(psych, logical.return=T)) quit(status=10)"
-RUN R -e "install.packages('knitr', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(knitr, logical.return=T)) quit(status=10)"
-RUN R -e "install.packages('ggthemes', dependencies=TRUE, repos='https://cran.wu.ac.at/');   if (!library(ggthemes, logical.return=T)) quit(status=10)"
-RUN R -e "devtools::install_github('LukasKraiger/frame')"
+RUN R -e "if (!library(devtools, logical.return=T)) install.packages('devtools', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
+RUN R -e "if (!library(tidyverse, logical.return=T)) install.packages('tidyverse', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
+RUN R -e "if (!library(sjlabelled, logical.return=T)) install.packages('sjlabelled', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
+RUN R -e "if (!library(haven, logical.return=T)) install.packages('haven', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
+RUN R -e "if (!library(magrittr, logical.return=T)) install.packages('magrittr', dependencies=TRUE, repos='https://cran.wu.ac.at/') "
+RUN R -e "if (!library(dplyr, logical.return=T)) install.packages('dplyr', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
+RUN R -e "if (!library(psych, logical.return=T)) install.packages('psych', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
+RUN R -e "if (!library(knitr, logical.return=T)) install.packages('knitr', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
+RUN R -e "if (!library(ggthemes, logical.return=T)) install.packages('ggthemes', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
 #https://stackoverflow.com/questions/45289764/install-r-packages-using-docker-file
+ 
 
+RUN R -e "if (!library(devtools, logical.return=T)) quit(status=10)"
+RUN R -e "if (!library(tidyverse, logical.return=T)) quit(status=10)"
+RUN R -e "if (!library(sjlabelled, logical.return=T)) quit(status=10)"
+RUN R -e "if (!library(haven, logical.return=T)) quit(status=10)"
+RUN R -e "if (!library(magrittr, logical.return=T)) quit(status=10)"
+RUN R -e "if (!library(dplyr, logical.return=T)) quit(status=10)"
+RUN R -e "if (!library(psych, logical.return=T)) quit(status=10)"
+RUN R -e "if (!library(knitr, logical.return=T)) quit(status=10)"
+RUN R -e "if (!library(ggthemes, logical.return=T)) quit(status=10)"
+ 
+RUN R -e "devtools::install_github('LukasKraiger/frame')"
+ 
 ENTRYPOINT usr/lib/rstudio-server/bin/rserver --www-port=8888  --server-daemonize=0 && /bin/bash 
 #https://forums.docker.com/t/how-to-run-bash-command-after-startup/21631 

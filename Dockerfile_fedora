@@ -7,11 +7,11 @@ RUN dnf update -y \
  
 RUN  dnf -y install chkconfig openssl-libs \
     #wget https://s3.amazonaws.com/rstudio-ide-build/server/rhel9/x86_64/rstudio-server-rhel-2023.03.0-daily-34-x86_64.rpm \
-    && dnf -y install rstudio-server
+    && dnf -y install rstudio-server \
    # && dnf -y install rstudio-server-rhel-2023.03.0-daily-34-x86_64.rpm \
    # && ln -s /usr/share/R /usr/share/doc/ \
    # && rstudio-server verify-installation
-   # && systemctl enable --now rstudio-server
+    && systemctl enable --now rstudio-server
  
 RUN dnf update -y \
     && dnf -y install harfbuzz-devel fribidi-devel openssl-devel libuuid libuuid-devel libcurl-devel \

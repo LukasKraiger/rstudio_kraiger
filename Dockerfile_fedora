@@ -8,9 +8,10 @@ RUN dnf update -y \
     && dnf -y install R  
    
  
-RUN  yum -y install chkconfig openssl-libs \
-    wget https://download2.rstudio.org/server/rhel8/x86_64/rstudio-server-rhel-2022.12.0-353-x86_64.rpm \
-    && yum -y install rstudio-server-rhel-2022.12.0-353-x86_64.rpm
+RUN dnf update -y \
+    && dnf -y install chkconfig openssl-libs \
+    && wget https://download2.rstudio.org/server/rhel8/x86_64/rstudio-server-rhel-2022.12.0-353-x86_64.rpm \
+    && dnf -y install rstudio-server-rhel-2022.12.0-353-x86_64.rpm
     
     
     

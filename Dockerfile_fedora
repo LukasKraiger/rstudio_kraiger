@@ -1,4 +1,7 @@
 FROM fedora:34
+
+USER root
+
 RUN dnf update -y \
     && dnf -y upgrade \
     && dnf -y install git wget passwd \

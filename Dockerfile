@@ -40,7 +40,7 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN apt-get update \
 && apt-get upgrade -y \
 && apt-get install -y libgit2-dev build-essential libcurl4-gnutls-dev libxml2-dev  \
-&& apt-get install -y libssl-dev libfontconfig1-dev freetype2-doc libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev \
+&& apt-get install -y libssl-dev cmake libfontconfig1-dev freetype2-doc libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev \
 && apt-get clean all && \
 apt-get purge && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

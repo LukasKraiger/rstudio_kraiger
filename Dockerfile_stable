@@ -83,5 +83,7 @@ RUN R -e "if (!library(ggpubr, logical.return=T)) quit(status=10)"
 
 RUN R -e "devtools::install_github('LukasKraiger/frame')"
  
+RUN rm -rf .Rprofile
+
 ENTRYPOINT usr/lib/rstudio-server/bin/rserver --www-port=8888  --server-daemonize=0 && /bin/bash 
 #https://forums.docker.com/t/how-to-run-bash-command-after-startup/21631 

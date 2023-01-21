@@ -46,6 +46,8 @@ apt-get purge && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 #https://stackoverflow.com/questions/65433724/configuration-failed-to-find-libgit2-library
 #https://github.com/r-lib/devtools/issues/2131
+
+RUN echo "options(Ncpus = 2)" >> .Rprofile
  
 RUN R -e "if (!library(devtools, logical.return=T)) install.packages('devtools', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
 RUN R -e "if (!library(tidyverse, logical.return=T)) install.packages('tidyverse', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
